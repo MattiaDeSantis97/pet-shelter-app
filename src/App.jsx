@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import AnimalList from './pages/AnimalList';
@@ -11,7 +11,7 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       {/* Sfondo globale dell'applicazione */}
       <div 
         className="min-h-screen bg-fixed bg-cover bg-center"
@@ -34,7 +34,7 @@ function App() {
           </main>
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

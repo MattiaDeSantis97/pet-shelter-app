@@ -1,25 +1,45 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// FIX: rimosso rejectWithValue non utilizzato (il catch usa dati di fallback, non reject)
 export const fetchExternalAnimals = createAsyncThunk(
   'externalAnimals/fetchAnimals',
   async () => {
     try {
-      const response = await fetch('https://api.thecatapi.com/v1/breeds?limit=3');
-      if (!response.ok) throw new Error('CORS o Errore Rete');
-      const data = await response.json();
-      return data.map(breed => ({
-        id: breed.id,
-        name: breed.name,
-        description: breed.description,
-        image: breed.image?.url || '/cat1.jpeg' || '/cat2.jpeg' || '/cat3.jpeg', // FIX: gestisce assenza di immagine
+      // Chiamate parallele a CatAPI e DogAPI
+      const [catsRes, dogsRes] = await Promise.all([
+        fetch('https://api.thecatapi.com/v1/breeds?limit=3'),
+        fetch('https://api.thedogapi.com/v1/breeds?limit=3')
+      ]);
+
+      const catsData = await catsRes.json();
+      const dogsData = await dogsRes.json();
+
+      // Mappatura Gatti
+      const cats = catsData.map(cat => ({
+        id: `cat-${cat.id}`,
+        name: cat.name,
+        species: 'Gatto',
+        description: cat.description,
+        image: cat.image?.url || "/cat1.jpeg",
+        origin: 'TheCatAPI'
       }));
-    } catch {
-      console.warn('API non raggiungibile. Caricamento immagini locali dalla cartella public.');
+
+      // Mappatura Cani
+      const dogs = dogsData.map(dog => ({
+        id: `dog-${dog.id}`,
+        name: dog.name,
+        species: 'Cane',
+        description: dog.temperament || 'Un cane fedele e vivace in cerca di una casa.',
+        image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
+        origin: 'TheDogAPI'
+      }));
+
+      return [...cats, ...dogs]; // Uniamo i 6 annunci
+    } catch (error) {
+      console.error("Errore API Esterne:", error);
+      // Fallback locale in caso di errore rete/CORS
       return [
-        { id: 'b1', name: 'Abissino (Locale)', description: 'Gatto attivo, curioso e molto intelligente. Ama interagire con la famiglia.', image: '/cat1.jpeg' },
-        { id: 'b2', name: 'Bombay (Locale)', description: 'Una "pantera in miniatura" domestica. Affettuoso e giocherellone.', image: '/cat2.jpeg' },
-        { id: 'b3', name: 'Certosino (Locale)', description: 'Robusto, silenzioso e leale. Noto per il suo sorriso enigmatico.', image: '/cat3.jpeg' },
+        { id: 'b1', name: 'Abissino', species: 'Gatto', description: 'Gatto attivo e curioso.', image: '/cat1.jpeg' },
+        { id: 'b2', name: 'Golden Retriever', species: 'Cane', description: 'Amichevole e socievole.', image: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=500' }
       ];
     }
   }
@@ -27,7 +47,7 @@ export const fetchExternalAnimals = createAsyncThunk(
 
 const externalAnimalsSlice = createSlice({
   name: 'externalAnimals',
-  initialState: { items: [], status: 'idle', error: null },
+  initialState: { items: [], status: 'idle' },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -35,10 +55,6 @@ const externalAnimalsSlice = createSlice({
       .addCase(fetchExternalAnimals.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.items = action.payload;
-      })
-      .addCase(fetchExternalAnimals.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
       });
   },
 });

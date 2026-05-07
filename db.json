@@ -1,0 +1,67 @@
+{
+  "users": [],
+  "local_animals": [
+    {
+      "name": "Shila",
+      "species": "Cane",
+      "age": "5",
+      "description": "Pastore Tedesco razza gigante",
+      "id": "UP8nG-epq1I"
+    },
+    {
+      "name": "Zeus",
+      "species": "Cane",
+      "age": "6",
+      "description": "Bolognese, non perde peli e caga ovunque",
+      "id": "0hqXN_9GUBE"
+    },
+    {
+      "name": "Thor",
+      "species": "Cane",
+      "age": "11",
+      "description": "cane molto calmo e coccoloso",
+      "id": "FfW_jad4WAY"
+    },
+    {
+      "id": "PTCkQOG-pGg",
+      "name": "Shila",
+      "species": "Cane",
+      "age": 8,
+      "description": "German Sheperd",
+      "image": "https://www.countryliving.com/life/kids-pets/g3283/the-50-most-popular-dog-breeds/"
+    }
+  ],
+  "adoption_requests": [
+    {
+      "animalId": "UP8nG-epq1I",
+      "animalName": "Shila",
+      "applicant": "matt",
+      "phone": "3667872783",
+      "reason": "vorrei adottare questo cane",
+      "status": "approvata",
+      "adminNotes": "mi sembra una persona affidabile",
+      "id": "uqikEycCekY"
+    },
+    {
+      "animalId": "0hqXN_9GUBE",
+      "animalName": "Zeus",
+      "applicant": "matt",
+      "phone": "36676893982",
+      "reason": "vorrei adottare quasto cane perche molto bello\n",
+      "status": "rifiutata",
+      "adminNotes": "è mio",
+      "id": "9QNehHtm4y4"
+    },
+    {
+      "animalId": "FfW_jad4WAY",
+      "animalName": "Thor",
+      "applicant": "matt",
+      "phone": "3778679847",
+      "reason": "perché è molto carino",
+      "status": "approvata",
+      "adminNotes": "tutto tuo",
+      "id": "bcWewpXXrgs"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

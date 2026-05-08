@@ -4,7 +4,7 @@ export const fetchExternalAnimals = createAsyncThunk(
   'externalAnimals/fetchAnimals',
   async () => {
     try {
-      // Chiamate parallele a CatAPI e DogAPI
+      // Chiamate parallele a CatAPI e DogAPI con limite a 3 ciascuna
       const [catsRes, dogsRes] = await Promise.all([
         fetch('https://api.thecatapi.com/v1/breeds?limit=3'),
         fetch('https://api.thedogapi.com/v1/breeds?limit=3')
@@ -13,34 +13,30 @@ export const fetchExternalAnimals = createAsyncThunk(
       const catsData = await catsRes.json();
       const dogsData = await dogsRes.json();
 
-      // Mappatura Gatti
       const cats = catsData.map(cat => ({
         id: `cat-${cat.id}`,
         name: cat.name,
         species: 'Gatto',
         description: cat.description,
-        image: cat.image?.url || "/cat1.jpeg",
+        image: cat.image?.url || "https://placehold.co/600x400?text=Gatto",
         origin: 'TheCatAPI'
       }));
 
-      // Mappatura Cani
       const dogs = dogsData.map(dog => ({
         id: `dog-${dog.id}`,
         name: dog.name,
         species: 'Cane',
-        description: dog.temperament || 'Un cane fedele e vivace in cerca di una casa.',
-        image: `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`,
+        description: dog.temperament || 'Un compagno fedele in cerca di casa.',
+        image: dog.reference_image_id 
+          ? `https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg` 
+          : "https://placehold.co/600x400?text=Cane",
         origin: 'TheDogAPI'
       }));
 
-      return [...cats, ...dogs]; // Uniamo i 6 annunci
+      return [...cats, ...dogs]; // Totale 6 annunci
     } catch (error) {
       console.error("Errore API Esterne:", error);
-      // Fallback locale in caso di errore rete/CORS
-      return [
-        { id: 'b1', name: 'Abissino', species: 'Gatto', description: 'Gatto attivo e curioso.', image: '/cat1.jpeg' },
-        { id: 'b2', name: 'Golden Retriever', species: 'Cane', description: 'Amichevole e socievole.', image: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=500' }
-      ];
+      return [];
     }
   }
 );

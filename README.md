@@ -12,50 +12,50 @@ f.write(markdown_content)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-[cite_start]Un'applicazione React moderna e performante per la gestione di un rifugio per animali, sviluppata come progetto finale per **EPICODE Institute of Technology**[cite: 111, 112].
+Un'applicazione React moderna e performante per la gestione di un rifugio per animali, sviluppata come progetto finale per **EPICODE Institute of Technology**.
 
 ---
 
 ## 📖 Panoramica del Progetto
-**Pet Shelter 2026** è una piattaforma dinamica che connette animali in cerca di casa con potenziali adottanti. [cite_start]L'app simula un ecosistema completo dove gli utenti possono esplorare annunci locali e internazionali, mentre i volontari e gli amministratori gestiscono il database e le richieste di adozione[cite: 115].
+**Pet Shelter 2026** è una piattaforma dinamica che connette animali in cerca di casa con potenziali adottanti. L'app simula un ecosistema completo dove gli utenti possono esplorare annunci locali e internazionali, mentre i volontari e gli amministratori gestiscono il database e le richieste di adozione.
 
-[cite_start]Il progetto dimostra la padronanza di concetti avanzati come la gestione dello stato globale, il routing dinamico, l'integrazione di API asincrone e la gestione dei ruoli utente[cite: 115].
+Il progetto dimostra la padronanza di concetti avanzati come la gestione dello stato globale, il routing dinamico, l'integrazione di API asincrone e la gestione dei ruoli utente.
 
 ---
 
 ## 🚀 Funzionalità Principali
 
 ### 🌐 Navigazione e Routing
-- [cite_start]**8 Pagine Distinte:** Home, Lista Animali, Dettaglio Animale, Dashboard Volontario, Dashboard Admin, Login, Chi Siamo e Contattaci[cite: 130].
-- [cite_start]**Routing Dinamico:** Utilizzo di `react-router-dom` per la navigazione e gestione dei parametri URL per le pagine di dettaglio (`/animal/:id`)[cite: 131].
-- [cite_start]**Paginazione e Filtri:** La lista animali supporta il filtraggio per specie e una paginazione fluida per gestire cataloghi ampi[cite: 130].
+- **8 Pagine Distinte:** Home, Lista Animali, Dettaglio Animale, Dashboard Volontario, Dashboard Admin, Login, Chi Siamo e Contattaci.
+- **Routing Dinamico:** Utilizzo di `react-router-dom` per la navigazione e gestione dei parametri URL per le pagine di dettaglio (`/animal/:id`).
+- **Paginazione e Filtri:** La lista animali supporta il filtraggio per specie e una paginazione fluida per gestire cataloghi ampi.
 
 ### 👤 Gestione Utenti e Ruoli
-- [cite_start]**Autenticazione Simulata:** Sistema di login reattivo per l'accesso sicuro alle aree riservate[cite: 134].
+- **Autenticazione Simulata:** Sistema di login reattivo per l'accesso sicuro alle aree riservate.
 - **Multi-Ruolo:**
   - **Adottante:** Può inviare richieste di adozione.
   - **Volontario:** Gestione completa degli annunci (Create, Update, Delete) con caricamento dinamico di immagini.
-  - [cite_start]**Admin:** Accesso a una dashboard dedicata per l'approvazione o il rifiuto delle richieste, con aggiornamento automatico dello stato degli animali (es. Badge "Adottato")[cite: 135].
+  - **Admin:** Accesso a una dashboard dedicata per l'approvazione o il rifiuto delle richieste, con aggiornamento automatico dello stato degli animali (es. Badge "Adottato").
 
 ### 🛠️ State Management & API
-- [cite_start]**Redux Toolkit:** Gestione dello stato globale per animali, moduli di adozione e sessione utente[cite: 126].
-- [cite_start]**Thunk:** Gestione fluida delle operazioni asincrone e del side-effect handling[cite: 127].
-- [cite_start]**Integrazione API:** Consumo di API esterne per alimentare una sezione "Partner Globali" (dog.ceo) e utilizzo del `localStorage` del browser per simulare un backend persistente per il database locale senza server dipendenti[cite: 138, 139].
+- **Redux Toolkit:** Gestione dello stato globale per animali, moduli di adozione e sessione utente.
+- **Thunk:** Gestione fluida delle operazioni asincrone e del side-effect handling.
+- **Integrazione API:** Consumo di API esterne per alimentare una sezione "Partner Globali" (dog.ceo) e utilizzo del `localStorage` del browser per simulare un backend persistente per il database locale senza server dipendenti.
 
 ### 📝 Form Controllati
-- [cite_start]**Validazione:** 4 form completamente controllati (Login, Contatti, Inserimento/Modifica Annuncio, Richiesta Adozione) con gestione interna dello stato, validazione dei campi obbligatori e messaggi di errore dinamici[cite: 143, 147].
+- **Validazione:** 4 form completamente controllati (Login, Contatti, Inserimento/Modifica Annuncio, Richiesta Adozione) con gestione interna dello stato, validazione dei campi obbligatori e messaggi di errore dinamici.
 
 ---
 
 ## 💻 Tech Stack
-- [cite_start]**Frontend:** React 19, Tailwind CSS[cite: 153].
-- [cite_start]**State:** Redux Toolkit, Redux Thunk[cite: 126, 127].
-- [cite_start]**Routing:** React Router v6[cite: 131].
-- [cite_start]**Deploy:** GitHub Pages, Vite[cite: 150].
+- **Frontend:** React 19, Tailwind CSS.
+- **State:** Redux Toolkit, Redux Thunk.
+- **Routing:** React Router v6.
+- **Deploy:** GitHub Pages, Vite.
 
 ---
 
-## [cite_start]🛠️ Istruzioni per l'Esecuzione Locale [cite: 150]
+## 🛠️ Istruzioni per l'Esecuzione Locale
 
 1. **Clona la repository:**
    ```bash

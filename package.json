@@ -1,4 +1,7 @@
 {
+  "name": "pet-shelter-app",
+  "version": "1.0.0",
+  "type": "module",
   "homepage": "https://MattiaDeSantis97.github.io/pet-shelter-app/",
   "scripts": {
     "dev": "vite",
@@ -13,7 +16,7 @@
     "@tailwindcss/postcss": "^4.2.4",
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.5.0",
-    "gh-pages": "^6.3.0",
+    "gh-pages": "^6.1.1",
     "json-server": "^0.17.4",
     "postcss": "^8.5.14",
     "tailwindcss": "^4.2.4",

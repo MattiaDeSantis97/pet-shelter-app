@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAdoptions, updateAdoptionStatus } from '../features/adoptionSlice';
+import { fetchAdoptionRequests, updateRequestStatus } from '../features/adoptionSlice';
 import { updateLocalAnimal } from '../features/animalsSlice';
 
 export default function AdminDashboard() {
@@ -9,14 +9,12 @@ export default function AdminDashboard() {
   const { items: animals } = useSelector((state) => state.animals);
 
   useEffect(() => {
-    if (status === 'idle') dispatch(fetchAdoptions());
+    if (status === 'idle') dispatch(fetchAdoptionRequests());
   }, [status, dispatch]);
 
   const handleAction = async (requestId, animalId, newStatus) => {
-    // 1. Aggiorna lo stato della richiesta
-    await dispatch(updateAdoptionStatus({ id: requestId, status: newStatus })).unwrap();
+    await dispatch(updateRequestStatus({ id: requestId, status: newStatus })).unwrap();
 
-    // 2. Se confermato, marca l'animale come adottato
     if (newStatus === 'approvata') {
       const animal = animals.find(a => a.id === animalId);
       if (animal) {
@@ -45,7 +43,7 @@ export default function AdminDashboard() {
                 </p>
               </div>
               
-              {req.status === 'pendente' && (
+              {req.status === 'in attesa' && (
                 <div className="flex gap-3">
                   <button onClick={() => handleAction(req.id, req.animalId, 'approvata')} className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl font-black transition-all">APPROVA</button>
                   <button onClick={() => handleAction(req.id, req.animalId, 'rifiutata')} className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-xl font-black transition-all">RIFIUTA</button>

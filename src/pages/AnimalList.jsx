@@ -27,7 +27,7 @@ export default function AnimalList() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {filteredItems.map((animal) => (
-          <div key={animal.id} className={`bg-white rounded-[32px] overflow-hidden shadow-2xl flex flex-col relative transition-all duration-300 ${animal.isAdopted ? 'opacity-75 grayscale-[0.5]' : 'hover:-translate-y-2'}`}>
+          <div key={animal.id} className={`bg-white rounded-4xl overflow-hidden shadow-2xl flex flex-col relative transition-all duration-300 ${animal.isAdopted ? 'opacity-75 grayscale-[0.5]' : 'hover:-translate-y-2'}`}>
             
             {/* Badge Adozione Confermata */}
             {animal.isAdopted && (

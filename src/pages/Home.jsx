@@ -30,7 +30,7 @@ export default function Home() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {items.map((animal) => (
-            <div key={animal.id} className="bg-white rounded-[32px] overflow-hidden shadow-2xl group transition-all">
+            <div key={animal.id} className="bg-white rounded-4xl overflow-hidden shadow-2xl group transition-all">
               <div className="h-72 overflow-hidden relative">
                 <img src={animal.image} alt={animal.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute top-4 right-4 bg-teal-500 text-white text-[10px] font-black px-4 py-2 rounded-full shadow-lg">

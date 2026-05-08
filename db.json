@@ -59,6 +59,5 @@
       "adminNotes": "persona rispetabile",
       "id": "8JJccsBQ1V8"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

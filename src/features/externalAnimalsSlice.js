@@ -9,6 +9,11 @@ export const fetchExternalAnimals = createAsyncThunk(
         fetch('https://api.thedogapi.com/v1/breeds?limit=3')
       ]);
 
+      // VALIDAZIONE FONDAMENTALE: intercetta l'errore 403 di TheDogAPI
+      if (!catsRes.ok || !dogsRes.ok) {
+        throw new Error('API esterna non autorizzata (403) o irraggiungibile');
+      }
+
       const catsData = await catsRes.json();
       const dogsData = await dogsRes.json();
 
@@ -16,7 +21,7 @@ export const fetchExternalAnimals = createAsyncThunk(
         id: `cat-${cat.id}`,
         name: cat.name,
         species: 'Gatto',
-        description: cat.description,
+        description: cat.description || 'Nessuna descrizione disponibile.',
         image: cat.image?.url || "https://placehold.co/600x400?text=Gatto",
         origin: 'TheCatAPI'
       }));
@@ -34,14 +39,14 @@ export const fetchExternalAnimals = createAsyncThunk(
 
       return [...cats, ...dogs];
     } catch (error) {
-      console.warn("Errore API Esterne, uso dati di backup.");
+      // DATI DI BACKUP: garantisce sempre 6 annunci se le API falliscono
       return [
-        { id: 'b1', name: 'Abissino', species: 'Gatto', description: 'Gatto curioso.', image: '/cat1.jpeg', origin: 'Locale' },
-        { id: 'b2', name: 'Certosino', species: 'Gatto', description: 'Gatto calmo.', image: '/cat2.jpeg', origin: 'Locale' },
-        { id: 'b3', name: 'Bombay', species: 'Gatto', description: 'Gatto affettuoso.', image: '/cat3.jpeg', origin: 'Locale' },
-        { id: 'b4', name: 'Golden Retriever', species: 'Cane', description: 'Amichevole.', image: 'https://placehold.co/600x400?text=Cane1', origin: 'Locale' },
-        { id: 'b5', name: 'Beagle', species: 'Cane', description: 'Vivace.', image: 'https://placehold.co/600x400?text=Cane2', origin: 'Locale' },
-        { id: 'b6', name: 'Labrador', species: 'Cane', description: 'Leale.', image: 'https://placehold.co/600x400?text=Cane3', origin: 'Locale' }
+        { id: 'b1', name: 'Abissino', species: 'Gatto', description: 'Gatto attivo, curioso e molto intelligente.', image: '/cat1.jpeg', origin: 'Backup Locale' },
+        { id: 'b2', name: 'Certosino', species: 'Gatto', description: 'Robusto, silenzioso e leale.', image: '/cat2.jpeg', origin: 'Backup Locale' },
+        { id: 'b3', name: 'Bombay', species: 'Gatto', description: 'Affettuoso e giocherellone, simile a una pantera.', image: '/cat3.jpeg', origin: 'Backup Locale' },
+        { id: 'b4', name: 'Golden Retriever', species: 'Cane', description: 'Estremamente socievole, paziente e devoto.', image: 'https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&q=80', origin: 'Backup Locale' },
+        { id: 'b5', name: 'Beagle', species: 'Cane', description: 'Vivace e curioso, dotato di un fiuto eccezionale.', image: 'https://images.unsplash.com/photo-1537151608804-ea6f1cb3ba6c?w=600&q=80', origin: 'Backup Locale' },
+        { id: 'b6', name: 'Pastore Tedesco', species: 'Cane', description: 'Leale, coraggioso e altamente addestrabile.', image: 'https://images.unsplash.com/photo-1589976267223-9524e93096cc?w=600&q=80', origin: 'Backup Locale' }
       ];
     }
   }

@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchExternalAnimals = createAsyncThunk(
   'externalAnimals/fetchAnimals',
   async () => {
-    // Dati statici diretti con URL immagini esterni ad alta affidabilità
+    // Array statico: NESSUNA CHIAMATA API ESTERNA
     return [
       { id: 'ext-1', name: 'Abissino', species: 'Gatto', description: 'Gatto attivo, curioso e molto intelligente.', image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80', origin: 'Partner Esterno' },
       { id: 'ext-2', name: 'Certosino', species: 'Gatto', description: 'Robusto, silenzioso e leale.', image: 'https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=600&q=80', origin: 'Partner Esterno' },

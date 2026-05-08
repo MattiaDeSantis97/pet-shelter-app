@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchLocalAnimals = createAsyncThunk('animals/fetchLocal', async () => {
-  const response = await fetch('http://localhost:3001/local_animals');
-  if (!response.ok) throw new Error('Errore recupero dati');
-  return response.json();
+  try {
+    const response = await fetch('http://localhost:3001/local_animals');
+    if (!response.ok) throw new Error('Server non raggiungibile');
+    return await response.json();
+  } catch (error) {
+    console.warn("Database locale offline. Restituzione array vuoto per evitare crash.");
+    return []; // Impedisce all'app di bloccarsi se json-server è spento
+  }
 });
 
 export const addLocalAnimal = createAsyncThunk('animals/addLocal', async (animalData) => {

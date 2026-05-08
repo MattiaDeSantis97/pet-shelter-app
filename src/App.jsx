@@ -12,13 +12,12 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <HashRouter>
-      {/* Sfondo globale dell'applicazione */}
       <div 
         className="min-h-screen bg-fixed bg-cover bg-center"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1600&q=80')" }}
       >
-        {/* Overlay scuro per permettere la leggibilità delle card in sovraimpressione */}
-        <div className="min-h-screen bg-black/50 backdrop-blur-sm flex flex-col">
+        {/* Overlay chiaro (bianco semitrasparente) per aumentare la luminosità */}
+        <div className="min-h-screen bg-white/40 backdrop-blur-sm flex flex-col">
           <Navbar />
           <main className="container mx-auto p-4 flex-grow">
             <Routes>

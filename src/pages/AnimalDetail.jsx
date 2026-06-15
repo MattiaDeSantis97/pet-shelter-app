@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { submitAdoptionRequest } from '../features/adoptionSlice';
 import { fetchLocalAnimals } from '../features/animalsSlice';
 
+// Pagina di dettaglio dell'animale, con gestione della richiesta di adozione e visualizzazione dei dettagli, con supporto per animali locali e persistenza su localStorage
 export default function AnimalDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export default function AnimalDetail() {
     }
   }, [id, items]);
 
+  // Funzione per gestire l'invio della richiesta di adozione, con validazione dei campi e gestione dello stato di invio
   const handleAdoptSubmit = async (e) => {
     e.preventDefault();
     setFormError('');
@@ -68,6 +70,7 @@ export default function AnimalDetail() {
   if (!animal) return <div className="mt-6 text-center font-bold">Caricamento...</div>;
 
   return (
+    // Layout della pagina di dettaglio dell'animale, con visualizzazione dei dettagli e form di richiesta adozione se l'utente è un adottante
     <div className="max-w-3xl mx-auto bg-white p-8 rounded shadow mt-6">
       <Link to="/animals" className="text-teal-600 font-bold mb-4 block">&larr; Torna alla lista</Link>
       

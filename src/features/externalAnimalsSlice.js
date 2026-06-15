@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+// Async thunk per recuperare animali esterni da un'API pubblica, con fallback sicuro in caso di errori o assenza di connessione
 export const fetchExternalAnimals = createAsyncThunk(
   'externalAnimals/fetchAnimals',
   async () => {
     try {
-      // API pubblica senza restrizioni CORS per soddisfare il requisito d'esame
+      // API pubblica senza restrizioni CORS per ottenere immagini casuali di cani, simulando animali esterni
       const response = await fetch('https://dog.ceo/api/breeds/image/random/6');
       if (!response.ok) throw new Error('API non raggiungibile');
       
@@ -32,6 +33,7 @@ export const fetchExternalAnimals = createAsyncThunk(
   }
 );
 
+// Slice per gestire lo stato degli animali esterni, con supporto per operazioni asincrone
 const externalAnimalsSlice = createSlice({
   name: 'externalAnimals',
   initialState: { items: [], status: 'idle' },

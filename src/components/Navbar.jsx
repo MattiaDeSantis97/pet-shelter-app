@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/authSlice';
 
+// Navbar con dropdown e autenticazione
 export default function Navbar() {
   const { isAuthenticated, role } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Gestione logout
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
@@ -35,6 +37,7 @@ export default function Navbar() {
 
             {role === 'volunteer' && <Link to="/volunteer-dashboard" className="hover:text-teal-300 font-bold">Dashboard Volontario</Link>}
             
+            // Dropdown Impostazioni, sempre visibile ma con link più generici
             <div className="relative group py-2">
               <span className="hover:text-teal-300 font-bold cursor-pointer flex items-center">Impostazioni <span className="ml-1 text-[10px]">▼</span></span>
               <div className="absolute left-0 top-full w-48 bg-white text-slate-800 rounded-xl shadow-2xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 border border-gray-100 overflow-hidden">

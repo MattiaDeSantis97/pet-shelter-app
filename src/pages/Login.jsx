@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { login } from '../features/authSlice';
 
+// Pagina di login, con supporto per diversi ruoli (adottante, volontario, admin) e gestione dell'autenticazione tramite Redux, con design moderno e responsive
 export default function Login() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -22,6 +23,7 @@ export default function Login() {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  // Funzione per gestire il submit del form di login, con validazione dei campi e gestione dell'autenticazione tramite Redux, con redirezione in base al ruolo
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
@@ -37,6 +39,7 @@ export default function Login() {
   };
 
   return (
+    // Layout della pagina di login, con supporto per diversi ruoli (adottante, volontario, admin) e gestione dell'autenticazione tramite Redux, con design moderno e responsive
     <div className="max-w-md mx-auto mt-16 bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20">
       <h2 className="text-3xl font-black mb-6 text-center text-slate-800">Area Riservata</h2>
       {error && <p className="bg-red-100 text-red-600 p-3 rounded mb-4 text-sm font-bold text-center">{error}</p>}

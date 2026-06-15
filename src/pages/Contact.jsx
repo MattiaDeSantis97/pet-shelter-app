@@ -1,9 +1,11 @@
+// Pagina di contatto, con form di invio messaggio e informazioni di contatto dell'azienda, con design moderno e responsive
 export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert('Messaggio inviato con successo! Ti risponderemo al più presto sulla tua email.');
   };
 
+  // Layout della pagina di contatto, con form di invio messaggio e informazioni di contatto dell'azienda, con design moderno e responsive
   return (
     <div className="max-w-5xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Form di Contatto */}
@@ -29,7 +31,7 @@ export default function Contact() {
       </div>
 
       {/* Info Azienda */}
-      <div className="bg-gradient-to-br from-teal-800 to-teal-900 text-white p-10 rounded-3xl shadow-2xl flex flex-col justify-center space-y-10 border border-teal-700">
+      <div className="bg-linear-to-br from-teal-800 to-teal-900 text-white p-10 rounded-3xl shadow-2xl flex flex-col justify-center space-y-10 border border-teal-700">
         <div>
           <h3 className="text-3xl font-black mb-3 text-teal-100">I nostri Recapiti</h3>
           <p className="text-teal-50 font-medium text-lg leading-relaxed">Siamo qui per rispondere a tutte le tue domande sull'adozione, il volontariato e il supporto alla nostra struttura.</p>

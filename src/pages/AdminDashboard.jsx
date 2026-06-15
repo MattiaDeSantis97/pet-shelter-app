@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdoptionRequests, updateRequestStatus } from '../features/adoptionSlice';
 import { updateLocalAnimal } from '../features/animalsSlice';
 
+// Dashboard per gli admin, con gestione delle richieste di adozione e aggiornamento dello stato degli animali
 export default function AdminDashboard() {
   const dispatch = useDispatch();
   const { requests, status } = useSelector((state) => state.adoption);
@@ -12,6 +13,7 @@ export default function AdminDashboard() {
     if (status === 'idle') dispatch(fetchAdoptionRequests());
   }, [status, dispatch]);
 
+  // Funzione per gestire l'approvazione o il rifiuto di una richiesta di adozione, con aggiornamento dello stato dell'animale se approvata
   const handleAction = async (requestId, animalId, newStatus) => {
     await dispatch(updateRequestStatus({ id: requestId, status: newStatus })).unwrap();
 
@@ -24,6 +26,7 @@ export default function AdminDashboard() {
   };
 
   return (
+    // Layout della dashboard con gestione delle richieste di adozione, con evidenziazione dello stato e azioni disponibili
     <div className="max-w-5xl mx-auto py-10 px-4">
       <div className="bg-white/90 p-8 rounded-3xl shadow-xl border border-gray-200">
         <h2 className="text-3xl font-black text-slate-800 mb-8 border-b-2 border-teal-500 pb-2 inline-block">

@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import About from './pages/About';
 import Contact from './pages/Contact';
 
+// Componente principale dell'applicazione, con routing e layout generale, con sfondo fisso e overlay chiaro per aumentare la luminosità, e design moderno e responsive
 function App() {
   return (
     <HashRouter>

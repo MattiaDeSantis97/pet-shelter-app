@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Slice per gestire lo stato di autenticazione, con supporto per operazioni asincrone
 const initialState = {
   user: null,
   role: null, // Ruoli: 'adopter', 'volunteer', 'admin'
   isAuthenticated: false,
 };
 
+// Slice per gestire lo stato di autenticazione, con supporto per operazioni asincrone
 const authSlice = createSlice({
   name: 'auth',
   initialState,

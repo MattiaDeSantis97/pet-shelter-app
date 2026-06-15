@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLocalAnimals } from '../features/animalsSlice';
 import { Link, useLocation } from 'react-router-dom';
 
+// Pagina di lista degli animali, con supporto per filtraggio per tipo e paginazione, con dati gestiti tramite Redux e localStorage
 export default function AnimalList() {
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.animals);
@@ -13,10 +14,12 @@ export default function AnimalList() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
+  // Carichiamo gli animali locali in Redux se non sono già stati caricati
   useEffect(() => {
     if (status === 'idle') dispatch(fetchLocalAnimals());
   }, [status, dispatch]);
 
+  // Filtriamo gli animali in base al tipo selezionato, se presente
   const filteredItems = filterType 
     ? items.filter(a => a.species.toLowerCase().includes(filterType.toLowerCase()))
     : items;
@@ -30,6 +33,7 @@ export default function AnimalList() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    // Layout della pagina di lista degli animali, con supporto per filtraggio e paginazione, e visualizzazione dei dettagli principali di ogni animale
     <div className="max-w-6xl mx-auto py-10 px-4">
       <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl mb-10 border border-teal-200 shadow-lg">
         <h2 className="text-4xl font-black text-slate-800 text-center uppercase tracking-tighter">

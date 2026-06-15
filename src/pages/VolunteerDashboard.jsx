@@ -4,6 +4,7 @@ import { addLocalAnimal, updateLocalAnimal, fetchLocalAnimals, deleteLocalAnimal
 
 const EMPTY_FORM = { name: '', species: '', age: '', description: '', image: '' };
 
+// Pagina dashboard per i volontari, con funzionalità di inserimento, modifica e cancellazione degli annunci degli animali locali, con gestione dei dati tramite Redux e localStorage
 export default function VolunteerDashboard() {
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.animals);
@@ -15,10 +16,12 @@ export default function VolunteerDashboard() {
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState('');
 
+  // Carichiamo gli animali locali in Redux se non sono già stati caricati
   useEffect(() => {
     if (status === 'idle') dispatch(fetchLocalAnimals());
   }, [status, dispatch]);
 
+  // Funzioni per gestire i cambiamenti nei campi del form, con supporto per anteprima dell'immagine e gestione dei file, e funzioni per modificare, annullare, eliminare e salvare gli annunci degli animali locali, con validazione dei campi e gestione dello stato di caricamento
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -36,6 +39,7 @@ export default function VolunteerDashboard() {
     reader.readAsDataURL(file); // Converte l'immagine in stringa Base64 per salvarla su db.json
   };
 
+  // Funzione per gestire la modifica di un annuncio
   const handleEdit = (animal) => {
     setEditingId(animal.id);
     setFormData({ name: animal.name, species: animal.species, age: String(animal.age), description: animal.description, image: animal.image || '' });
@@ -46,7 +50,7 @@ export default function VolunteerDashboard() {
 
   const handleCancel = () => { setEditingId(null); setFormData(EMPTY_FORM); setImagePreview(''); setError(''); setMessage(''); };
 
-  // NUOVO: Funzione per gestire l'eliminazione
+  // Funzione per gestire l'eliminazione
   const handleDelete = async (id) => {
     if (window.confirm('Sei sicuro di voler eliminare questo annuncio definitivamente?')) {
       try {
@@ -58,6 +62,7 @@ export default function VolunteerDashboard() {
     }
   };
 
+  // Funzione per gestire il submit del form di inserimento/modifica, con validazione dei campi e gestione dello stato di caricamento, e supporto per aggiunta e aggiornamento degli animali locali tramite Redux e localStorage
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); setMessage('');
@@ -80,6 +85,7 @@ export default function VolunteerDashboard() {
   };
 
   return (
+    // Layout della dashboard per i volontari, con funzionalità di inserimento, modifica e cancellazione degli annunci degli animali locali, con gestione dei dati tramite Redux e localStorage, con design moderno e responsive
     <div className="max-w-5xl mx-auto space-y-8 py-6">
       <div className="bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/20">
         <h2 className="text-3xl font-black mb-6 text-slate-800 border-b-2 border-teal-100 pb-3">

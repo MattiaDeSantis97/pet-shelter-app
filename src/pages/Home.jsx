@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchExternalAnimals } from '../features/externalAnimalsSlice';
 import { Link } from 'react-router-dom';
 
+// Pagina Home, con sezione hero e grid di animali partner internazionali, con dati gestiti tramite Redux e localStorage
 export default function Home() {
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.externalAnimals);
 
+  // Carichiamo gli animali esterni in Redux se non sono già stati caricati
   useEffect(() => {
     if (status === 'idle') dispatch(fetchExternalAnimals());
   }, [status, dispatch]);
 
   return (
+    // Layout della pagina Home, con sezione hero e grid di animali partner internazionali, con dati gestiti tramite Redux e localStorage
     <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Hero scuro per contrasto */}
       <div className="bg-slate-950/70 backdrop-blur-lg text-white p-12 md:p-20 rounded-[40px] text-center mb-16 border border-white/10 shadow-2xl">
